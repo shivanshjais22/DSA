@@ -1,0 +1,27 @@
+pro no :- 1863 
+
+IT IS EASY PROBLEM BUT  STUCK POS :- 1,
+
+class Solution {
+public:
+
+int find(vector<int>&nums , int i,int ans){
+
+if(i==nums.size()) return ans;
+
+
+
+return find(nums,i+1,ans^nums[i])+find(nums,i+1,ans);  1 :- WHY WE RETURN HERE ANS NOT NUMS[I] , I AM ALSO STUCK THAN I GET HELE HERE AND SOLVE IT 
+
+}
+
+
+    int subsetXORSum(vector<int>& nums) {
+        
+        int ans=0;
+
+        return find(nums,0,ans);
+
+
+    }
+};

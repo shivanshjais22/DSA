@@ -1,0 +1,27 @@
+// minimum number of opretion 
+
+// it easy 
+
+// First thought:
+// Step 1: We want to find the last element that repeats in the array,
+// so we consider checking frequencies, but that's not an easy or efficient solution.
+//
+// Instead, we traverse the array in reverse to find the first repeating number from the end.
+// Once we find its index, we add 1 and divide it by 3 to group it.
+// To ensure we always round up to the correct group number, we use 'ceil'.
+
+
+
+class Solution {
+public:
+       
+    int minimumOperations(vector<int>& nums) {
+   vector<int> freq(101, 0);
+    for (int i = nums.size() - 1; i >= 0; --i) {
+    if (++freq[nums[i]] > 1) 
+        return ceil((double)(i + 1) / 3);
+}
+return 0;    
+    }
+
+};

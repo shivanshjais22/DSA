@@ -1,0 +1,42 @@
+3170 lexicographically-minimum-string-after-removing-stars
+
+topic : Heap
+
+Intuition: At every *, we need to replace it with the smallest available letter, so we maintain a min-heap to always access the smallest letter efficiently.
+
+We also need to track the frequency of each letter. For this, we initially used a vector, but to optimize time complexity, we also used a map for faster lookups and updates.
+
+
+
+
+class Solution {
+public:
+    string clearStars(string s) {
+                priority_queue<char,vector<char>,greater<char>> pq;
+        vector<vector<int>> indices (26, vector<int>());
+        char ch;
+        for (int i = 0;i<s.size();i++){
+            if (s[i] == '*'){
+                ch = pq.top();
+                s[indices[ch - 'a'].back()] = '!';
+                indices[ch - 'a'].pop_back();
+                if (indices[ch - 'a'].size() == 0){  
+                    pq.pop();
+                }
+				continue;
+            }
+            if (indices[s[i] - 'a'].size() == 0){  
+                pq.push(s[i]);
+            }
+            indices[s[i] - 'a'].push_back(i);
+        }
+
+        string res = "";
+        for (char c: s){
+            if (c >= 'a') { 
+                res += c; 
+            }
+        }
+        return res;
+    }
+};

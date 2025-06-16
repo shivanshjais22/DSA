@@ -1,0 +1,37 @@
+Intuition
+us we want to find largest element for every position after that so we can do
+
+Approach
+revers that we stored largest nume and travel and update a int code if ans is less than given number than we update ans which max value
+
+Complexity
+Time complexity:
+we travel loop one time -:O(n)
+
+Space complexity:
+no use of space 0( 1)
+
+Code
+class Solution {
+public:
+    int maximumDifference(vector<int>& nums) {
+
+        int ans=INT_MIN;
+        int a=-1;
+
+        for(int j=nums.size()-1;j>=1;j--){
+
+     ans=max(ans,nums[j]);
+     
+     if(ans>nums[j-1]){
+a=max(a,ans-nums[j-1]);
+
+     }
+
+        }
+
+
+        return a;
+        
+    }
+};

@@ -1,0 +1,51 @@
+# cycle ditection on Undirected Graph Cycle   usin (DFS)
+
+
+bool find(int ind, int p, vector<int>&vist,vector<int>adj[]){
+      
+      
+      vist[ind]=1;
+      
+      for(int i=0;i<adj[ind].size();i++){
+          if(adj[ind][i]==p) continue;
+          
+          if(vist[adj[ind][i]]==1) return 1;
+          
+          
+          
+          if(find(adj[ind][i],ind,vist,adj)) return 1;
+          
+          
+          
+      }
+      
+      
+      
+      
+      return 0;
+  }
+  
+  
+  
+    bool isCycle(int V, vector<vector<int>>& edges) {
+        // Code here
+        
+        vector<int>adj[V];
+        for (auto& edge : edges) {
+    int u = edge[0];
+    int v = edge[1];
+    adj[u].push_back(v);
+    adj[v].push_back(u);
+        }
+        
+        
+        vector<int>vist(V,0);
+         for(int i=0;i<V;i++){
+            if(!vist[i]&&find(i,-1,vist,adj))
+            return 1;
+         }
+        
+    return   0;
+        
+    }
+};
